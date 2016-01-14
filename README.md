@@ -6,6 +6,13 @@ This is an extension for [Mission Control](https://github.com/space-race/mission
 
 ## Setup
 
+Install the extension in your mission control project.
+
+```
+cd /path/to/mission-control
+npm install --save mc-ext-github
+```
+
 Add `GITHUB_WEBHOOK_SECRET=a_securely_generated_random_string` (and input a random key which will be used later to configure webhooks)
 
 A quick method for generating an alphanumeric string:
@@ -37,3 +44,7 @@ openssl rand -hex 24
     ![configuring a webhook](https://cloud.githubusercontent.com/assets/721038/12319544/e612d3b2-ba57-11e5-8518-29e1805417c8.png)
     
 9. Click "Add webhook"
+
+## Using data from GitHub webhook payloads in pipelines
+
+You can access properties a github webhook payload with `{[ mc.webhook.example ]}`. For example, if you wanted the commit to build for a push event, you might access `{[ mc.webhook.after ]}` (which is the sha of the commit).
