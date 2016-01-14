@@ -17,7 +17,7 @@ module.exports = {
     console.log('received github hook')
     console.dir(req)
 
-    if (!githubSignatureIsValid('abc', reqBody, providedSignature)) {
+    if (!githubSignatureIsValid(process.env.GITHUB_WEBHOOK_SECRET, reqBody, providedSignature)) {
       console.log('github sig invalid')
       res.status(403)
       res.send()
