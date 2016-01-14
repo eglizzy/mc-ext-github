@@ -21,6 +21,14 @@ A quick method for generating an alphanumeric string:
 openssl rand -hex 24
 ```
 
+Restart Mission Control
+
+```
+cd /path/to/mission-control
+mc stop
+mc start
+```
+
 ## Configuring a webhook with GitHub
 
 1. Go to your repository on GitHub.
