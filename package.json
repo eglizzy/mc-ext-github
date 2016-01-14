@@ -1,0 +1,19 @@
+{
+  "name": "mc-ext-github",
+  "version": "0.0.1",
+  "description": "Mission Control Extension for working with GitHub, including cloning repos, handling webhooks, and the status API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/validate-mc-extension && ./node_modules/.bin/tape ./test/**/*.test.js | ./node_modules/.bin/tap-spec"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "github-webhook-middleware": "0.0.2"
+  },
+  "devDependencies": {
+    "mc-extension-validator": "*",
+    "tape": "^4.2.2",
+    "tap-spec": "^4.1.1"
+  }
+}
