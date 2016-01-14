@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/space-race/mc-ext-github.svg?branch=master)](https://travis-ci.org/space-race/mc-ext-github)
 
+This is an extension for [Mission Control](https://github.com/space-race/mission-control) to use GitHub webhooks, and other features (in the future).
+
 ## Setup
 
 Add `GITHUB_WEBHOOK_SECRET=a_securely_generated_random_string` (and input a random key which will be used later to configure webhooks)
