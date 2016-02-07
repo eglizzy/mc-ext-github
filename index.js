@@ -8,6 +8,9 @@ module.exports = {
   webhooks: [
     require('./src/webhooks/execute-pipeline')
   ],
+  pipeline_settings: [
+    require('./src/pipeline-settings/webhook-settings')
+  ],
   stages: [
     require('./src/stages/clone-repo')
   ],
