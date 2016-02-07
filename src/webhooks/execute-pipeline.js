@@ -36,6 +36,124 @@ module.exports = {
     // TODO: filter events based on extension/pipeline settings
     // if (req.body.event === 'pull_request.comment')
 
+    // Potential extension data structure
+    //config.extension_settings = {
+    //  mc: {
+    //    github: {
+    //      webhook_enabled: 1,
+    //      event_watch_started_enabled: 1
+    //    }
+    //  }
+    //}
+
+
+    // - Event types ----------------------------
+
+    // Event Name
+    //    Webhook event name
+    //        Action
+
+    // CreateEvent
+    //    commit_comment
+    //        created
+
+    // DeleteEvent
+    //    delete
+
+    // DeploymentEvent
+    //    deployment
+
+    // DeploymentStatusEvent
+    //    deployment_status
+
+    // DownloadEvent
+    //    download
+
+    // FollowEvent
+    //    follow
+
+    // ForkEvent
+    //    fork
+
+    // ForkApplyEvent
+    //    fork_apply
+
+    // GistEvent
+    //    gist
+
+    // GollumEvent
+    //    gollum
+
+    // IssueCommentEvent
+    //    issue_comment
+    //        created
+
+    // IssuesEvent
+    //    issues
+    //        assigned
+    //        unassigned
+    //        labeled
+    //        unlabeled
+    //        opened
+    //        closed
+    //        reopened
+
+    // MemberEvent
+    //    member
+    //        added
+
+    // MembershipEvent
+    //    membership
+    //        added
+    //        removed
+
+    // PageBuildEvent
+    //    page_build
+
+    // PublicEvent
+    //    public
+
+    // PullRequestEvent
+    //    action
+    //        assigned
+    //        unassigned
+    //        labeled
+    //        unlabeled
+    //        opened
+    //        closed
+    //        reopened
+    //        synchronize
+    //
+    // If the action is "closed" and the merged key is false, the pull request was closed with unmerged commits.
+    // If the action is "closed" and the merged key is true, the pull request was merged.
+
+    // PullRequestReviewCommentEvent
+    //    pull_request_review_comment
+    //       created
+
+    // PushEvent
+    //    push
+
+    // ReleaseEvent
+    //    release
+    //        published
+
+    // RepositoryEvent
+    //    repository
+    //        created
+
+    // StatusEvent
+    //    status
+
+    // TeamAddEvent
+    //    team_add
+
+    // WatchEvent
+    //    watch
+    //        started
+
+
+
     try {
       helper.executePipeline(req.params.id, {webhookData: req.body}, () => {
         res.send()
