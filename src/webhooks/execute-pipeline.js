@@ -21,52 +21,43 @@ module.exports = {
       return
     }
 
-
     const event = req.headers['x-github-event']
-    const action = req.body.action || ''
+    const action = req.body.action || null
 
-    const settings = helper.pipelineSettings(req.params.id, 'mc', 'github')
-
-    if (settings.hasOwnProperty('webhook')) {
-      if (!settings.webhook.enabled) {
+    const executePipelineAndRespond = () => {
+      try {
+        return helper.executePipeline(req.params.id, {webhookData: req.body}, () => {
+          res.send()
+        })
+      } catch (err) {
+        console.error(err)
         res.status(500)
         return res.send()
       }
-
-
-      const hooks = settings.webhook;
-      const key = event + '_' + action
-      if ('pull_request_closed' == key) {
-        if (hooks[key] && !payload.merged) {
-          res.status(200)
-          return res.send()
-        }
-      }
-      if (hooks[key]) {
-        try {
-          return helper.executePipeline(req.params.id, {webhookData: req.body}, () => {
-            res.send()
-          })
-        } catch (err) {
-          console.error(err)
-          res.status(500)
-          return res.send()
-        }
-      }
-
-      res.status(422)
-      return res.send()
     }
 
-    try {
-      return helper.executePipeline(req.params.id, {webhookData: req.body}, () => {
-        res.send()
+    helper.pipelineSettings(req.params.id, 'mc', 'github', 'webhook')
+      .then(settings => {
+
+        if (Object.keys(settings).length && settings.enabled) {
+
+          const key = action ? (event + '_' + action) : event
+          if ('pull_request_closed' == key) {
+            if (settings.pull_request_closed_merged && payload.merged) {
+              return executePipelineAndRespond()
+            }
+            res.status(200)
+            return res.send()
+          }
+          if (settings[key]) {
+            return executePipelineAndRespond()
+          }
+        }
+
+        res.status(422)
+        return res.send()
       })
-    } catch (err) {
-      console.error(err)
-      res.status(500)
-      returnres.send()
-    }
+
   }
 
 }
